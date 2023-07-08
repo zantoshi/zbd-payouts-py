@@ -1,0 +1,119 @@
+{% extends 'payouts/base.html' %}
+{% load static %}
+
+{% block title %} Success! {% endblock %}
+
+
+{% block content %}
+
+    <!-- Card Grid -->
+    <div class="container content-space-2 content-space-lg-3" id="blogSection">
+        <!-- Heading -->
+        <div class="row" style="color: #d2daea;">
+            <div class="col-3">
+            <img class="mb-4" src="https://zebedee.io/images/logo/logo-header.svg" />
+            </div>
+            <h2 style=" color: #d2daea;">Welcome to Payouts</h2>
+            <p>With Lightning Address, it's easy. Just add the lightning addresses and the amount, then pay!</p>
+            
+            <form action="{% url 'pay' %}" method="post">
+                {% csrf_token %}
+                <div class="row mb-4">
+                    <div class="col-8">
+                        <!-- Input Group -->
+                        <label for="lnaddress1" class="form-label text-white" required>Lightning Address</label>
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend input-group-text" id="inputGroupMergeEmailAddOn">
+                                <i class="bi-lightning"></i>
+                            </div>
+                            <input type="email" class="form-control" id="lnaddress1" name="lnaddress1" placeholder="santos@zbd.gg" aria-label="santos@example.com" aria-describedby="inputGroupMergeEmailAddOn">
+                        </div>
+                    </div>
+                            
+
+                    <div class="col-4">
+                        <label for="amount1" class="form-label text-white" required>Amount</label>
+
+                        <!-- Input Group -->
+                    
+                        <div class="input-group input-group-merge">
+                        <div class="input-group-prepend input-group-text" id="inputGroupMergeEmailAddOn">
+                            <i class="bi-lightning"></i>
+                        </div>
+                        <input type="number" class="form-control" id="amount1" name="amount1" placeholder="Enter amount in sats" minimum="10" aria-describedby="inputGroupMergeEmailAddOn" required>
+                        </div>
+                        <!-- End Input Group -->
+                    </div>    
+                    <div id="add_lnaddress_list" class="mt-4">
+
+                    </div>
+                </div>
+   
+                </div>
+
+
+
+                <div class="col-12 mb-3">
+                    <button type="button" onclick="addInputs()" style="background: #916EF7; border-style: none;"  class="btn btn-primary" id="add1"><i class="bi bi-plus"></i></button>
+                  </div>
+                <input style="background: #916EF7; border-style: none;" type="submit" class="btn btn-primary btn-lg" value="Pay">
+            </form>
+
+
+            <!-- End Heading -->
+
+        </div>
+    </div>
+
+    <!-- End Card Grid -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  start_add_row = 1;
+  
+
+  function addInputs () {
+    start_add_row += 1
+    $('#add_lnaddress_list').append(`
+    <div class="row mb-4">
+        <div class="col-8">
+            <!-- Input Group -->
+            <label for="lnaddress${start_add_row}" class="form-label text-white" required>Lightning Address</label>
+            <div class="input-group input-group-merge">
+                <div class="input-group-prepend input-group-text" id="inputGroupMergeEmailAddOn">
+                    <i class="bi-lightning"></i>
+                </div>
+                <input type="email" class="form-control" id="lnaddress${start_add_row}" name="lnaddress${start_add_row}" placeholder="btc@zbd.gg" aria-label="santos@example.com" aria-describedby="inputGroupMergeEmailAddOn">
+            </div>
+        </div>
+                
+
+        <div class="col-4">
+            <label for="amount2" class="form-label text-white" required>Amount</label>
+
+            <!-- Input Group -->
+        
+            <div class="input-group input-group-merge">
+            <div class="input-group-prepend input-group-text" id="inputGroupMergeEmailAddOn">
+                <i class="bi-lightning"></i>
+            </div>
+            <input type="number" class="form-control" id="amount${start_add_row}" name="amount${start_add_row}" placeholder="Enter amount in sats" minimum="10" aria-describedby="inputGroupMergeEmailAddOn" required>
+        </div>
+            <!-- End Input Group -->
+        </div> 
+    `);
+
+    row = "row-" + start_add_row;
+    del = "del-" + start_add_row;
+    document.getElementById(del).addEventListener("click", removeInputs);
+    }
+
+  function removeInputs (e) {
+    let element = e.target.id;
+    element_split = element.split("-");
+    let num = element_split[1];
+    $("div").remove("#row-"+num);
+  }
+
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'payouts/base.html' %}
+{% load static %}
+
+{% block title %} Success! {% endblock %}
+
+
+{% block content %}
+
+    <!-- Card Grid -->
+    <div class="container content-space-2 content-space-lg-3" id="blogSection">
+        <!-- Heading -->
+        <div class="row" style="color: #d2daea;">
+            <h2 style=" color: #d2daea;" >Your payout has been completed.</h2>
+            <p>Awesome job!</p>
+            <strong>Paid to Lightning Addresses</strong>
+            {% for ln_address in ln_addresses %}
+                <p>ϟ  {{ ln_address.0 }} -- {{ ln_address.1 }} sats </p>
+            {% endfor %}
+            <div class="col-3">
+                <a style="background: #916EF7; border-style: none;" href="{% url 'index' %}" class="btn btn-primary btn-small">Go back home</a>
+            </div>
+
+        </div>
+        <!-- End Heading -->
+
+        </div>
+
+    </div>
+
+    <!-- End Card Grid -->
+{% endblock %}

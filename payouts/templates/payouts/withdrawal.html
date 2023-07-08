@@ -1,0 +1,27 @@
+{% extends 'payouts/base.html' %}
+{% load static %}
+
+{% block title %} Success! {% endblock %}
+
+
+{% block content %}
+
+    <!-- Card Grid -->
+    <div class="container content-space-2 content-space-lg-3" id="blogSection">
+        <!-- Heading -->
+        <div class="row" style="color: #d2daea;">
+            <h2 style=" color: #d2daea;" >Test Withdrawal</h2>
+
+            <div class="col-3">
+                <a style="background: #916EF7; border-style: none;" href="{{w}}" class="btn btn-primary btn-small">Open in Wallet</a>
+            </div>
+
+        </div>
+        <!-- End Heading -->
+
+        </div>
+
+    </div>
+
+    <!-- End Card Grid -->
+{% endblock %}
