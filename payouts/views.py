@@ -7,7 +7,7 @@ from .util import *
 import environ
 
 env = environ.Env()
-callback_url = env('ZEBEDEE_API_KEY')
+apikey = env('ZEBEDEE_API_KEY')
 
 
 
